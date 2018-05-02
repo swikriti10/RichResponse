@@ -62,10 +62,38 @@ restService.post("/slack-test", function (req, res) {
 
 
     //sess = req.session;
+if (actionName=="OPTION.OPTION-custom") {
+    var slack_message = {
 
-    
+        expect_user_response: true,
+        rich_response: {
+            items: [
+                  {
+                      simpleResponse: {
+                          textToSpeech: "Storage item locations list"
+                      }
+                  }
+            ]
+        }
+    }
+    return res.json({
+        speech: "",
+        displayText: "",
 
-    if (val == "start" || val == "Start") {
+        source: "webhook-echo-sample",
+
+        data: {
+            google: slack_message
+        }
+
+
+
+    });
+
+}
+   
+
+    else if (val == "start" || val == "Start") {
 
         //   sess.name ="Napo";
         request({
