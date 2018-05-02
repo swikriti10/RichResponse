@@ -63,7 +63,7 @@ restService.post("/slack-test", function (req, res) {
 
     //sess = req.session;
 
-    if (actionName == "store_items") {
+    if (Sitem!="sitem") {
         var slack_message = {
 
             expect_user_response: true,
