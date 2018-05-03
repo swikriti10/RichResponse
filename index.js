@@ -97,7 +97,7 @@ restService.post("/slack-test", function (req, res) {
 
                             'optionInfo': { 'key': c_stock.d.results[i].MatDesc },
                             'title': c_stock.d.results[i].Material,
-                            "description": c_stock.d.results[i].AvailQty
+                            'description': c_stock.d.results[i].AvailQty
 
                         }
                         obj_stock.push(botResponsesotck);
@@ -109,8 +109,8 @@ restService.post("/slack-test", function (req, res) {
                             items: [
                                   {
                                       simpleResponse: {
-                                          // textToSpeech: len+val
-                                          textToSpeech: "Avaliable stocks:"
+                                          textToSpeech: len_stock
+                                         // textToSpeech: "Avaliable stocks:"
                                       }
                                   }
                             ]
@@ -133,10 +133,7 @@ restService.post("/slack-test", function (req, res) {
 
 
                     };
-
-                }
-
-                return res.json({
+return res.json({
                     speech: "",
                     displayText: "",
 
@@ -149,6 +146,9 @@ restService.post("/slack-test", function (req, res) {
 
 
                 });
+                }
+
+                
 
             }
 
