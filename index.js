@@ -82,7 +82,7 @@ restService.post("/slack-test", function (req, res) {
                 // var JSONObj = JSON.parse(body);
                 var c_stock = JSON.parse(body);
                 //var a = res.json(body);
-                var len_stock = c.d.results.length;
+                var len_stock = c_stock.d.results.length;
                 //var a = JSON.stringify(a);
 
                 var botResponsesotck = {};
@@ -117,19 +117,9 @@ restService.post("/slack-test", function (req, res) {
 
 
 
-                        },
-
-                        systemIntent: {
-                            intent: "actions.intent.OPTION",
-                            data: {
-                                "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                                listSelect: {
-                                    title: "Stocks",
-                                    items: obj_stock
-                                }
-                            }
                         }
 
+                      
 
 
                     };
