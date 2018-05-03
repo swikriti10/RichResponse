@@ -59,7 +59,7 @@ restService.post("/slack-test", function (req, res) {
 
     const app = new App({ request: req, response: res });
 
-   
+
     //sess = req.session;
     if (Sitem != "sitem") {
 
@@ -133,8 +133,10 @@ restService.post("/slack-test", function (req, res) {
 
 
                     };
-                  
-                     return res.json({
+
+                }
+
+                return res.json({
                     speech: "",
                     displayText: "",
 
@@ -147,10 +149,6 @@ restService.post("/slack-test", function (req, res) {
 
 
                 });
-
-                }
-
-
 
             }
 
