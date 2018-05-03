@@ -62,7 +62,7 @@ restService.post("/slack-test", function (req, res) {
 
 
     //sess = req.session;
-if (actionName=="OPTION.OPTION-custom") {
+if (Sitem!="sitem") {
     var slack_message = {
 
         expect_user_response: true,
@@ -70,7 +70,7 @@ if (actionName=="OPTION.OPTION-custom") {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech: "Storage item locations list"
+                          textToSpeech:Sitem+"Storage item locations list"
                       }
                   }
             ]
