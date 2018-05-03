@@ -59,39 +59,96 @@ restService.post("/slack-test", function (req, res) {
 
     const app = new App({ request: req, response: res });
 
-
+    http://208.85.249.174:8000/sap/opu/odata/CRVWM/WMS_SRV/StorageOverviewSet?$filter=StLoc%20eq%20%2788%27%20and%20Plant%20eq%20%270001%27
 
     //sess = req.session;
-if (Sitem!="sitem") {
-    var slack_message = {
+    if (Sitem != "sitem") {
 
-        expect_user_response: true,
-        rich_response: {
-            items: [
-                  {
-                      simpleResponse: {
-                          textToSpeech:Sitem+"Storage item locations list"
-                      }
-                  }
-            ]
-        }
+
+        request({
+            //url: url + "/TOItemDetailsSet?$filter=ToNum eq('" + d + "')&$format=json",
+            url: url + "StorageOverviewSet?$filter=StLoc%20eq%20%27"+Sitem+"%27%20and%20Plant%20eq%20%270001%27&sap-client=900&sap-language=EN&$format=json",
+            headers: {
+                // "Authorization": "Basic <<base64 encoded sapuser:crave123>>",
+                "Authorization": "Basic c2FwdXNlcjpjcmF2ZTEyMw==",
+                "Content-Type": "application/json",
+                "x-csrf-token": "Fetch"
+            }
+
+        }, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                csrfToken = response.headers['x-csrf-token'];
+                // console.log(csrfToken);
+                // var gwResponse = body.asString();
+                // var JSONObj = JSON.parse(body);
+                var c_stock = JSON.parse(body);
+                //var a = res.json(body);
+                var len_stock = c.d.results.length;
+                //var a = JSON.stringify(a);
+
+                var botResponsesotck = {};
+                var obj_stock = [];
+                var i = 0;
+                if (c_stock.d.results.length > 0) {
+                    // botResponse = "Your latest Purchase orders are: ";
+
+                    for (; i < c_stock.d.results.length; i++) {
+                        // botResponse += " ";
+                        botResponsesotck = {
+
+                            'optionInfo': { 'key': c_stock.d.results[i].MatDesc },
+                            'title': c_stock.d.results[i].Material,
+                            "description": c_stock.d.results[i].AvailQty
+
+                        }
+                        obj_stock.push(botResponsesotck);
+                    }
+                    var slack_message = {
+
+                        expect_user_response: true,
+                        rich_response: {
+                            items: [
+                                  {
+                                      simpleResponse: {
+                                          // textToSpeech: len+val
+                                          textToSpeech: "Avaliable stocks:"
+                                      }
+                                  }
+                            ]
+
+
+
+                        },
+
+                        systemIntent: {
+                            intent: "actions.intent.OPTION",
+                            data: {
+                                "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+                                listSelect: {
+                                    title: "Stocks",
+                                    items: obj_stock
+                                }
+                            }
+                        }
+
+
+
+                    };
+
+                }
+
+
+
+            }
+
+
+        });
+
+
+
+
     }
-    return res.json({
-        speech: "",
-        displayText: "",
 
-        source: "webhook-echo-sample",
-
-        data: {
-            google: slack_message
-        }
-
-
-
-    });
-
-}
-   
 
     else if (val == "start" || val == "Start") {
 
@@ -632,9 +689,9 @@ if (Sitem!="sitem") {
                 items: [
                       {
                           simpleResponse: {
-                            //  textToSpeech: "bye"
-                            textToSpeech: Sitem
-                            
+                              //  textToSpeech: "bye"
+                              textToSpeech: Sitem
+
                           }
                       }
                 ]
@@ -668,5 +725,3 @@ restService.listen(process.env.PORT || 8000, function () {
     console.log("Server up and listening");
 });
 
-
-//https://purchaseorder.herokuapp.com/slack-test
