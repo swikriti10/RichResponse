@@ -109,7 +109,7 @@ restService.post("/slack-test", function (req, res) {
                             items: [
                                   {
                                       simpleResponse: {
-                                          textToSpeech: len_stock
+                                          textToSpeech: len_stock+c_stock.d.results[12].MatDesc
                                          // textToSpeech: "Avaliable stocks:"
                                       }
                                   }
