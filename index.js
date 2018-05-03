@@ -59,8 +59,7 @@ restService.post("/slack-test", function (req, res) {
 
     const app = new App({ request: req, response: res });
 
-    http://208.85.249.174:8000/sap/opu/odata/CRVWM/WMS_SRV/StorageOverviewSet?$filter=StLoc%20eq%20%2788%27%20and%20Plant%20eq%20%270001%27
-
+   
     //sess = req.session;
     if (Sitem != "sitem") {
 
@@ -134,6 +133,20 @@ restService.post("/slack-test", function (req, res) {
 
 
                     };
+                  
+                     return res.json({
+                    speech: "",
+                    displayText: "",
+
+                    source: "webhook-echo-sample",
+
+                    data: {
+                        google: slack_message
+                    }
+
+
+
+                });
 
                 }
 
