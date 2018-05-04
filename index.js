@@ -97,7 +97,7 @@ restService.post("/slack-test", function (req, res) {
 
                             'optionInfo': { 'key': c_stock.d.results[i].ItemsPos},
                             'title': c_stock.d.results[i].ItemsPos+"-"+c_stock.d.results[i].Material+","+c_stock.d.results[i].MatDesc,
-,
+
                             'description':"Quantity- "+c_stock.d.results[i].AvailQty
 
                         }
