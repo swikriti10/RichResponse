@@ -95,9 +95,10 @@ restService.post("/slack-test", function (req, res) {
                         // botResponse += " ";
                         botResponsesotck = {
 
-                            'optionInfo': { 'key': c_stock.d.results[i].MatDesc },
-                            'title': c_stock.d.results[i].Material,
-                            'description': c_stock.d.results[i].AvailQty
+                            'optionInfo': { 'key': c_stock.d.results[i].ItemsPos},
+                            'title': c_stock.d.results[i].ItemsPos+"-"+c_stock.d.results[i].Material+","+c_stock.d.results[i].MatDesc },
+,
+                            'description':"Quantity- "+c_stock.d.results[i].AvailQty
 
                         }
                         obj_stock.push(botResponsesotck);
@@ -109,8 +110,8 @@ restService.post("/slack-test", function (req, res) {
                             items: [
                                   {
                                       simpleResponse: {
-                                          textToSpeech: len_stock+c_stock.d.results[12].MatDesc
-                                         // textToSpeech: "Avaliable stocks:"
+                                        //  textToSpeech: len_stock+c_stock.d.results[12].MatDesc
+                                          textToSpeech: "Avaliable stocks:"
                                       }
                                   }
                             ]
