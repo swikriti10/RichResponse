@@ -91,7 +91,8 @@ restService.post("/slack-test", function (req, res) {
                 if (c_stock.d.results.length > 0) {
                     // botResponse = "Your latest Purchase orders are: ";
 
-                    for (; i < c_stock.d.results.length; i++) {
+                   // for (; i < c_stock.d.results.length; i++) {
+                  for (; i <30; i++) {
                         // botResponse += " ";
                         botResponsesotck = {
 
